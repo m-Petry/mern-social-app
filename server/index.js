@@ -9,6 +9,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import authRoutes from "./toures/auth.js";
+import userRoutes from "./routes/users.js";
 import { register } from "./controllers/auth.js";
 
 /* Configurations */
@@ -34,14 +35,14 @@ const storage = multer.diskStorage({
     cb(null, file.originalname);
   }
 });
-
 const upload = multer({ storage });
 
 // Routes with files
 app.post("/auth/register", upload.single("picture"), register); //middlaware example
 
 //Routes
-add.post("/auth", authRoutes);
+app.post("/auth", authRoutes);
+app.use("/users", userRoutes);
 
 // Mongoose Setup
 const PORT = process.env.PORT || 6001; //port backup
