@@ -63,7 +63,6 @@ export const likePost = async (req, res) => {
     }
 
     //update a specific post
-
     const updatedPost = await Post.findByIdAndUpdate(
       id,
       { likes: post.likes },
